@@ -1,4 +1,4 @@
-import { URL } from 'url';
+import { URL  } from 'url';
 import handleFileUpload from './controllers/fileController.js';
 import handleSearch from './controllers/searchController.js';
 import sendResponse from './utils/response.js';
@@ -14,4 +14,6 @@ export default async function handleRequest(req, res) {
   } else {
     sendResponse(res, 404, 'Error: Not found!');
   }
+
 };
+
