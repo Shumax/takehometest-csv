@@ -1,12 +1,14 @@
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import path, { join } from 'path';
 import sendResponse from "../utils/response.js";
 
 export default function handleFileUpload(req, res) {
   
   let data = [];
-   
+
+  const __dirname = path.resolve();
+  
   req.on('data', function(chunk) {
     data.push(chunk);
   });
@@ -44,10 +46,7 @@ export default function handleFileUpload(req, res) {
       result.push(obj);
     })
 
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-
-    let filename = join(__dirname,'../../public/dataUploads.json');
+    let filename = join(__dirname,'/public/dataUploads.json');
 
     fs.writeFile(filename, JSON.stringify(result), (err) => {
       if (err) {
