@@ -4,7 +4,7 @@ import sendResponse from '../utils/response.js';
 
 const __dirname = path.resolve();
 
-const data = JSON.parse(readFileSync(join(__dirname,'/public/dataUploads.json'), 'utf8'));
+const data = JSON.parse(readFileSync(join(__dirname,'/public/dataUploads.json'), 'utf8')) || [];
 
 export default function handleSearch(req, res, query) {
 
@@ -20,7 +20,7 @@ export default function handleSearch(req, res, query) {
       }
     });
 
-    sendResponse(res, 200, results);
+    return sendResponse(res, 202, results);
     
   } catch (err) {
     return sendResponse(res, 400, err);
