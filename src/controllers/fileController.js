@@ -16,9 +16,9 @@ export default function handleFileUpload(req, res) {
   req.on('end', function() {
     const file = Buffer.concat(data).toString();
 
-    if(!file) sendResponse(res, 400, "Error: Empty request!");
+    if(!file) return sendResponse(res, 400, "Error: Empty request!");
 
-    if(!file.includes('Content-Type: text/csv')) sendResponse(res, 400, "Error: Type file!");
+    if(!file.includes('Content-Type: text/csv')) return sendResponse(res, 400, "Error: Type file!");
 
     const startDelimiter = 'Content-Type: text/csv';
     const endDelimiter = '----------------------------';
